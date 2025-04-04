@@ -22,7 +22,9 @@ public class LoginPage extends PageTools {
         type(password, passwordField);
     }
 
-    public void clickSignInButton() {
+    public void clickLoginButton() {
         click(signInButton);
+        getActions().pause(300);
     }
+
 }

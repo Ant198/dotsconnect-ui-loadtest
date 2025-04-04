@@ -24,7 +24,7 @@ public class BaseTest extends AllureLogger {
 
     @AfterMethod(alwaysRun = true, description = "Closing web browser...")
     public void tearDown(ITestResult result) {
-        Selenide.closeWebDriver();
+        //Selenide.closeWebDriver();
         logInfo("Web driver closed!");
     }
 }

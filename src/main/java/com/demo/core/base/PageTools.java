@@ -75,6 +75,7 @@ public class PageTools extends AllureLogger {
     /**
      * Main Actions
      */
+
     protected void click(By by, Object... args) {
         logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
         shouldBe(Condition.visible, by, args).click();

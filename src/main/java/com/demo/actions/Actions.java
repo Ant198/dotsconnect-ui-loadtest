@@ -1,25 +1,16 @@
 package com.demo.actions;
 
 public class Actions {
-    /**
-     * Page actions
-     */
-    private static LoginActions loginActions;
     private static MainActions mainActions;
+    private static QuizActions quizActions;
 
-    /**
-     * This function returns an instance of `LoginActions`
-     */
-    public static LoginActions loginActions() {
-        if (loginActions == null) {
-            loginActions = new LoginActions();
+    public static QuizActions quizActions() {
+        if (quizActions == null) {
+            quizActions = new QuizActions();
         }
-        return loginActions;
+        return quizActions;
     }
 
-    /**
-     * This function returns an instance of `MainActions`
-     */
     public static MainActions mainActions() {
         if (mainActions == null) {
             mainActions = new MainActions();
