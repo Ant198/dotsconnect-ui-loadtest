@@ -3,17 +3,11 @@ package com.demo.pages;
 import com.demo.core.allure.AllureLogger;
 
 public class Pages extends AllureLogger {
-    /**
-     * Pages
-     */
     private static LoginPage loginPage;
     private static DashBoardPage dashBoardPage;
     private static HomePage homePage;
     private static QuizPage quizPage;
 
-    /**
-     * This function return an instance of `DashBoardPage`
-     */
     public static LoginPage loginPage() {
         if (loginPage == null) {
             loginPage = new LoginPage();

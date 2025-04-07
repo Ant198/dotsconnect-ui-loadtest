@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Run Jmeter') {
                     steps {
-                        bat 'jmeter -n -t dotsconnect-test.jmx -l results/results.jtl'
+                        bat 'jmeter -n -t dotsconnect-test.jmx -l results\results.jtl'
                     }
                 }
 

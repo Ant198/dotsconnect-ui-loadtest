@@ -5,8 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.demo.core.base.PageTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
-
-import java.time.Duration;
 import java.util.List;
 
 public class QuizPage extends PageTools {
@@ -19,16 +17,8 @@ public class QuizPage extends PageTools {
     private final By abstentionLocator = By.xpath("//div[contains(@class, \"voting-options\")]//button[text()=\"Abstain\"]");
     private final By abstentionConfirmLocator = By.xpath("//div[contains(@class, \"voting-options\")]//button[contains(., \"Confirm Abstention\")]");
 
-    public boolean isQuizQuestionExist() {
-        return isCondition(Condition.exist, submitVoteLocator);
-    }
-
     public boolean isVoteSubmited() {
         return isCondition(Condition.exist, voteSubmittedLocator);
-    }
-
-    public List<SelenideElement> getListElements(By by) {
-        return getElements(by);
     }
 
     public SelenideElement getElement(By by) {

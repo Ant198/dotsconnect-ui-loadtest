@@ -1,5 +1,6 @@
 package com.demo.pages;
 
+import com.codeborne.selenide.Condition;
 import com.demo.core.base.PageTools;
 import org.openqa.selenium.By;
 
@@ -9,6 +10,10 @@ public class LoginPage extends PageTools {
     private final By usernameField = By.xpath("//input[@placeholder=\"Username\"]");
     private final By passwordField = By.xpath("//input[@placeholder=\"Password\"]");
     private final By signInButton = By.xpath("//button[contains(., \"Sign in\")]");
+
+    public boolean isUserNameSectionExist() {
+        return isCondition(Condition.exist,userNameSection);
+    }
 
     public void clickUserNameSection() {
         click(userNameSection);
