@@ -24,7 +24,6 @@ public class LoginPage extends PageTools {
 
     public void clickLoginButton() {
         click(signInButton);
-        getActions().pause(300);
     }
 
 }
