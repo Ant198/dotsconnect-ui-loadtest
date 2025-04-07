@@ -11,6 +11,7 @@ import org.openqa.selenium.support.Color;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.Duration;
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;

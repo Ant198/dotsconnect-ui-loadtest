@@ -14,6 +14,7 @@ public class DashBoardPage extends PageTools {
         return isCondition(Condition.visible, pastEvents);
     }
     public void clickPastEventsButton() {
+        waitForElementVisibility(pastEvents);
         click(pastEvents);
     }
     public void clickDemoEvent() {

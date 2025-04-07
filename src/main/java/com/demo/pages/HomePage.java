@@ -8,6 +8,7 @@ public class HomePage extends PageTools {
     private final By signInButton = By.xpath("//a[@href=\"/sign-in\"]");
 
     public void clickSignInButton() {
+        waitForElementVisibility(signInButton);
         click(signInButton);
     }
 }

@@ -4,6 +4,7 @@ import com.demo.actions.Actions;
 import com.demo.core.base.BaseTest;
 import com.demo.pages.Pages;
 import com.demo.utils.Constants;
+import com.demo.utils.UILoadTimer;
 import com.opencsv.exceptions.CsvException;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -13,6 +14,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.demo.utils.CsvReader;
 import java.util.List;
+
+import static com.demo.utils.UILoadTimer.*;
+import static com.demo.utils.UILoadTimer.timerLog;
 
 @Epic("Performance Testing")
 @Feature("UI Load Test")
@@ -43,11 +47,17 @@ public class QuizUiLoadTest extends BaseTest {
 
         Assert.assertEquals(Actions.mainActions().getCurrentUrl(), Constants.URL, "HomePage did not open");
         Pages.homePage().clickSignInButton();
-        Pages.loginPage().clickUserNameSection();
-        Pages.loginPage().setUsername(userName);
-        Pages.loginPage().setPassword(password);
-        Pages.loginPage().clickLoginButton();
-        Assert.assertTrue(Pages.loginPage().isUserNameSectionExist(), "Not authorized");
+        timerLog("Login User", () -> {
+            Pages.loginPage().clickUserNameSection();
+            try {
+                Pages.loginPage().setUsername(userName);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Pages.loginPage().setPassword(password);
+            Pages.loginPage().clickLoginButton();
+        });
+        Assert.assertFalse(Pages.loginPage().isErrorMessageVizibility(), "Too many requests");
         Assert.assertTrue(Pages.dashBoardPage().isPastEventsVizible(), "dashboard did not open");
         Pages.dashBoardPage().clickPastEventsButton();
         Pages.dashBoardPage().clickDemoEvent();
