@@ -10,11 +10,10 @@ public class DashBoardPage extends PageTools {
     private final By demoEvent = By.xpath("//a[@href=\"/demo/demo-event\"]");
 
     public boolean isPastEventsVizible() {
-        waitForElementVisibility(pastEvents);
-        return isCondition(Condition.visible, pastEvents);
+        waitForElementPresent(pastEvents);
+        return isCondition(Condition.exist, pastEvents);
     }
     public void clickPastEventsButton() {
-        waitForElementVisibility(pastEvents);
         click(pastEvents);
     }
     public void clickDemoEvent() {
