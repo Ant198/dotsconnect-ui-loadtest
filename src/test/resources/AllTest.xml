@@ -4,7 +4,7 @@
 
     <test name="FirstTest">
         <classes>
-            <class name="com.demo.FirstTest"/>
+            <class name="com.demo.QuizUiLoadTest"/>
         </classes>
     </test>
 
