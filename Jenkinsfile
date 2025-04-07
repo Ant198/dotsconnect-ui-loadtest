@@ -3,14 +3,14 @@ pipeline {
     stages {
         stage('Run Jmeter') {
                     steps {
-                        sh 'jmeter -n -t testplan.jmx -l results/results.jtl'
+                        bat 'jmeter -n -t testplan.jmx -l results/results.jtl'
                     }
                 }
 
         stage('Run test') {
             steps {
                 script{
-                    sh "mvn clean test"
+                    bat "mvn clean test"
                 }
             }
          }
