@@ -4,8 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.demo.core.base.PageTools;
 import org.openqa.selenium.By;
 
-import java.time.Duration;
-
 public class LoginPage extends PageTools {
 
     private final By userNameSection = By.xpath("//button[contains(., \"Username\")]");
@@ -15,16 +13,19 @@ public class LoginPage extends PageTools {
     private final By errorMessage = By.xpath("//div[contains(@class, \"text-destructive\")]//span");
 
     public boolean isErrorMessageVizibility() {
-        return isCondition(Condition.visible,errorMessage);
+        return isCondition(Condition.exist, errorMessage);
     }
 
     public void clickUserNameSection() {
         click(userNameSection);
     }
 
+    public boolean isUserNameVisibility() throws InterruptedException {
+        Thread.sleep(10000);
+        return isCondition(Condition.visible ,usernameField);
+    }
+
     public void setUsername(String username) throws InterruptedException {
-        //waitForElementPresent(userNameSection);
-        getSelenideElement(usernameField).shouldBe(Condition.visible, Duration.ofSeconds(40));
         type(username, usernameField);
     }
 

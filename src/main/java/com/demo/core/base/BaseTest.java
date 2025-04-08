@@ -1,5 +1,6 @@
 package com.demo.core.base;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.demo.core.allure.AllureLogger;
 import com.demo.core.config.SelenideConfig;
@@ -14,7 +15,7 @@ public class BaseTest extends AllureLogger {
 
     @BeforeMethod(alwaysRun = true, description = "Opening web browser...")
     public void setUp() throws Exception {
-
+        Configuration.timeout = 5000;
         logInfo("Creating web driver configuration..."); //test
         SelenideConfig.createBrowserConfig(System.getProperty("selenide.browser", "chrome"));
         configLog(this.getClass().getSimpleName());

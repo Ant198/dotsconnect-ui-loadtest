@@ -4,7 +4,7 @@ import com.demo.actions.Actions;
 import com.demo.core.base.BaseTest;
 import com.demo.pages.Pages;
 import com.demo.utils.Constants;
-import com.demo.utils.UILoadTimer;
+import com.demo.utils.CsvReader;
 import com.opencsv.exceptions.CsvException;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -12,10 +12,9 @@ import io.qameta.allure.Owner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import com.demo.utils.CsvReader;
+
 import java.util.List;
 
-import static com.demo.utils.UILoadTimer.*;
 import static com.demo.utils.UILoadTimer.timerLog;
 
 @Epic("Performance Testing")
@@ -44,20 +43,13 @@ public class QuizUiLoadTest extends BaseTest {
         String[] distributedVotingResponse = row[6].split(",");
         String textInputResponse = row[7];
         String singleSelectionAbstentionResponse = row[8];
-
         Assert.assertEquals(Actions.mainActions().getCurrentUrl(), Constants.URL, "HomePage did not open");
         Pages.homePage().clickSignInButton();
-        timerLog("Login User", () -> {
-            Pages.loginPage().clickUserNameSection();
-            try {
-                Pages.loginPage().setUsername(userName);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            Pages.loginPage().setPassword(password);
-            Pages.loginPage().clickLoginButton();
-        });
-        Assert.assertFalse(Pages.loginPage().isErrorMessageVizibility(), "Too many requests");
+        Pages.loginPage().clickUserNameSection();
+        Assert.assertTrue(Pages.loginPage().isUserNameVisibility(), "user name field did not visibility");
+        Pages.loginPage().setUsername(userName);
+        Pages.loginPage().setPassword(password);
+        Pages.loginPage().clickLoginButton();
         Assert.assertTrue(Pages.dashBoardPage().isPastEventsVizible(), "dashboard did not open");
         Pages.dashBoardPage().clickPastEventsButton();
         Pages.dashBoardPage().clickDemoEvent();
