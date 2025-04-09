@@ -1,8 +1,11 @@
 package com.demo.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ex.UIAssertionError;
 import com.demo.core.base.PageTools;
 import org.openqa.selenium.By;
+
+import java.time.Duration;
 
 public class LoginPage extends PageTools {
 
@@ -20,12 +23,17 @@ public class LoginPage extends PageTools {
         click(userNameSection);
     }
 
-    public boolean isUserNameVisibility() throws InterruptedException {
-        Thread.sleep(10000);
-        return isCondition(Condition.visible ,usernameField);
+    public boolean isUserNameVisibility() {
+        try {
+            getSelenideElement(usernameField).should(Condition.exist, Duration.ofSeconds(10));
+            return true;
+        } catch (UIAssertionError e) {
+            return false;
+        }
     }
 
-    public void setUsername(String username) throws InterruptedException {
+    public void setUsername(String username) {
+        waitForElementVisibility(usernameField);
         type(username, usernameField);
     }
 
