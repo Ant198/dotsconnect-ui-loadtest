@@ -102,7 +102,7 @@ public class SelenideConfig {
         Configuration.fastSetValue = false;
         Configuration.savePageSource = false;
         Configuration.screenshots = true;
-        Configuration.headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+        Configuration.headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
         Configuration.pollingInterval = 5000;
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 18000;

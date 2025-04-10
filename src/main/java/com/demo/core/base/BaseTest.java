@@ -15,7 +15,7 @@ public class BaseTest extends AllureLogger {
 
     @BeforeMethod(alwaysRun = true, description = "Opening web browser...")
     public void setUp() throws Exception {
-        Configuration.timeout = 5000;
+        Configuration.headless = true;
         logInfo("Creating web driver configuration..."); //test
         SelenideConfig.createBrowserConfig(System.getProperty("selenide.browser", "chrome"));
         configLog(this.getClass().getSimpleName());
@@ -25,7 +25,7 @@ public class BaseTest extends AllureLogger {
 
     @AfterMethod(alwaysRun = true, description = "Closing web browser...")
     public void tearDown(ITestResult result) {
-        //Selenide.closeWebDriver();
+        Selenide.closeWebDriver();
         logInfo("Web driver closed!");
     }
 }
